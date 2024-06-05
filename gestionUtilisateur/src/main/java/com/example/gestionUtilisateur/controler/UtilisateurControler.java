@@ -24,7 +24,7 @@ public class UtilisateurControler {
     }
 
     @PutMapping("/updateUser/{id}")
-    public void updateUser(@RequestBody Utilisateur utilisateur, @RequestParam("id") long id ){
+    public void updateUser(@RequestBody Utilisateur utilisateur, @PathVariable("id") long id ){
         Utilisateur userUpdate = utilisateurRepository.findUtilisateurById(id);
 
         userUpdate.setNom(utilisateur.getNom());
@@ -39,7 +39,7 @@ public class UtilisateurControler {
     }
 
     @DeleteMapping("/deleteUser/{id}")
-    public void deleteUser(@RequestParam("id") long id){
+    public void deleteUser(@PathVariable("id") long id){
         utilisateurRepository.deleteById(id);
     }
 }
