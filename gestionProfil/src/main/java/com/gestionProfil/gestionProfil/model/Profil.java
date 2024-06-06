@@ -1,31 +1,29 @@
 package com.gestionProfil.gestionProfil.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "profil")
 public class Profil {
 
-    @Column(name = "id", nullable = false)
-    @GeneratedValue()
-    public long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQ")
+    @SequenceGenerator(name = "SEQ", sequenceName = "vehicle_seq", allocationSize = 1)
+    private Long id;
 
-    @Column(name = "userId")
-    public long userId;
+    @Column(name = "userid")
+    private Long userId;
 
     @Column(name = "sport")
-    public long sport;
+    private String sport;
 
     @Column(name = "poid")
-    public long poid;
+    private Integer poid;
 
     @Column(name = "niveau")
-    public long niveau;
+    private String niveau;
 
-    public Profil(long id, long userId, long sport, long poid, long niveau) {
+    public Profil(Long id, Long userId, String sport, Integer poid, String niveau) {
         this.id = id;
         this.userId = userId;
         this.sport = sport;
@@ -33,48 +31,48 @@ public class Profil {
         this.niveau = niveau;
     }
 
+
     public Profil(){
 
     }
 
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getSport() {
+    public String getSport() {
         return sport;
     }
 
-    public void setSport(long sport) {
+    public void setSport(String sport) {
         this.sport = sport;
     }
 
-    public long getPoid() {
+    public Integer getPoid() {
         return poid;
     }
 
-    public void setPoid(long poid) {
+    public void setPoid(Integer poid) {
         this.poid = poid;
     }
 
-    public long getNiveau() {
+    public String getNiveau() {
         return niveau;
     }
 
-    public void setNiveau(long niveau) {
+    public void setNiveau(String niveau) {
         this.niveau = niveau;
     }
 
