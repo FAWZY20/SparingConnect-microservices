@@ -2,8 +2,6 @@ package com.gestioMessage.gestioMessage.model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "message")
 public class Message {
@@ -15,6 +13,8 @@ public class Message {
     private Long id;
 
     @Column(name = "conversation_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQ")
+    @SequenceGenerator(name = "SEQ", sequenceName = "vehicle_seq", allocationSize = 1)
     private Long conversation_id;
 
     @Column(name = "sender_id")
@@ -27,7 +27,7 @@ public class Message {
     private String content;
 
     @Column(name = "timestamp")
-    private Date timestamp;
+    private String timestamp;
 
     @Column(name = "status")
     private Enum status;
@@ -35,7 +35,7 @@ public class Message {
     @Column(name = "deleted")
     private Boolean deleted;
 
-    public Message(Long id, Long conversation_id, Long sender_id, Long recipient_id, String content, Date timestamp, Enum status, Boolean deleted) {
+    public Message(Long id, Long conversation_id, Long sender_id, Long recipient_id, String content, String timestamp, Enum status, Boolean deleted) {
         this.id = id;
         this.conversation_id = conversation_id;
         this.sender_id = sender_id;
@@ -44,6 +44,12 @@ public class Message {
         this.timestamp = timestamp;
         this.status = status;
         this.deleted = deleted;
+    }
+
+    public Message(Long recipient_id, String content, String timestamp) {
+        this.recipient_id = recipient_id;
+        this.content = content;
+        this.timestamp = timestamp;
     }
 
     public Message(){
@@ -91,11 +97,11 @@ public class Message {
         this.content = content;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
