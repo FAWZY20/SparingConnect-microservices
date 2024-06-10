@@ -13,8 +13,6 @@ public class Message {
     private Long id;
 
     @Column(name = "conversation_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQ")
-    @SequenceGenerator(name = "SEQ", sequenceName = "vehicle_seq", allocationSize = 1)
     private Long conversation_id;
 
     @Column(name = "sender_id")
