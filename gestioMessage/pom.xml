@@ -84,7 +84,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>registry.hub.docker.com/felsam99/sparingconnect_gestiomessage:1.0.0</image>
+						<image>registry.hub.docker.com/felsam99/sparingconnect_gestiomessage:1.0.1</image>
 					</to>
 					<container>
 						<mainClass>com.gestioMessage.gestioMessage.GestioMessageApplication</mainClass>

@@ -10,7 +10,7 @@ services:
       - backend
 
   gestionuser-service:
-    image: felsam99/sparingconnect_gestionutilisateur:1.0.2
+    image: felsam99/sparingconnect_gestionutilisateur:1.0.3
     ports:
       - "8081:8081"
     environment:
@@ -36,7 +36,7 @@ services:
       - backend
 
   gestionmessage-service:
-    image: felsam99/sparingconnect_gestiomessage:1.0.0
+    image: felsam99/sparingconnect_gestiomessage:1.0.1
     ports:
       - "8083:8083"
     environment:
