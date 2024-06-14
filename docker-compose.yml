@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+
+  eureka:
+    image: felsam99/eurekaserveur:1.0.0
+    ports:
+      - "8761:8761"
+    networks:
+      - backend
+
+  gestionuser-service:
+    image: felsam99/sparingconnect_gestionutilisateur:1.0.2
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/sparingConnect
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  gestionprofil-service:
+    image: felsam99/sparingconnect_gestionprofil:1.0.1
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/sparingConnect
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  gestionmessage-service:
+    image: felsam99/sparingconnect_gestiomessage:1.0.0
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/sparingConnect
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=sparingConnect
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
