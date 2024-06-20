@@ -52,13 +52,12 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=sparingConnect
     ports:
-      - "5432:5432"
-    networks:
-      - backend
+      - "5433:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
 
 networks:
   backend:

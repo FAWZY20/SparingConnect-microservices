@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="postgres">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="utilisateur"/>
+            </not>
+        </preConditions>
+        <createTable tableName="utilisateur">
+            <column name="id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nom" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prenom" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail" type="text">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="password" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="integer"/>
+            <column name="ville" type="text"/>
+            <column name="description" type="text"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="utilisateur"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2" author="postgres">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="profil"/>
+            </not>
+        </preConditions>
+        <createTable tableName="profil">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sport" type="text"/>
+            <column name="poid" type="integer"/>
+            <column name="niveau" type="text"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="profil"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="3" author="postgres">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="messages"/>
+            </not>
+        </preConditions>
+        <createTable tableName="messages">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="conversation_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recipient_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="timestamp"/>
+            <column name="status" type="varchar(20)"/>
+            <column name="deleted" type="boolean"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="messages"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
