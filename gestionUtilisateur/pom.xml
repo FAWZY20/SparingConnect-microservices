@@ -76,7 +76,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>registry.hub.docker.com/felsam99/sparingconnect_gestionutilisateur:1.1.0</image>
+						<image>registry.hub.docker.com/felsam99/sparingconnect_gestionutilisateur:1.1.1</image>
 					</to>
 					<container>
 						<mainClass>com.example.gestionUtilisateur.GestionUtilisateurApplication</mainClass>
