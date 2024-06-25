@@ -11,7 +11,7 @@ services:
       - backend
 
   gestionuser-service:
-    image: felsam99/sparingconnect_gestionutilisateur:1.1.0
+    image: felsam99/sparingconnect_gestionutilisateur:1.0.0
     container_name: gestionuser-service-1
     environment:
       - SPRING_PROFILES_ACTIVE=docker
