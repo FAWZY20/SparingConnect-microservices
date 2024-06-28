@@ -2,6 +2,8 @@ package com.example.gestionUtilisateur.controler;
 
 import com.example.gestionUtilisateur.model.Utilisateur;
 import com.example.gestionUtilisateur.repository.UtilisateurRepository;
+import com.example.gestionUtilisateur.service.AuthentificationService;
+import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,15 @@ public class UtilisateurControler {
 
     @Autowired
     UtilisateurRepository utilisateurRepository;
+
+
+    @Autowired
+    AuthentificationService authentificationService;
+
+    @PostMapping("/login")
+    public String login(@RequestBody Utilisateur utilisateur){
+        return authentificationService.checkConnexion(utilisateur);
+    }
 
     @GetMapping("/getAllUser")
     public List<Utilisateur> getAllUser(){
