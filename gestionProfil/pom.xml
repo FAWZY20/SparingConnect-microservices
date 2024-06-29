@@ -71,7 +71,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>registry.hub.docker.com/felsam99/sparingconnect_gestionprofil:1.0.6</image>
+						<image>registry.hub.docker.com/felsam99/sparingconnect_gestionprofil:1.0.0</image>
 					</to>
 					<container>
 						<mainClass>com.gestionProfil.gestionProfil.GestionProfilApplication</mainClass>

@@ -26,7 +26,7 @@ services:
       - backend
 
   gestionprofil-service:
-    image: felsam99/sparingconnect_gestionprofil:1.0.6
+    image: felsam99/sparingconnect_gestionprofil:1.0.0
     container_name: gestionprofil-service-2
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -39,7 +39,7 @@ services:
       - backend
 
   gestionmessage-service:
-    image: felsam99/sparingconnect_gestiomessage:1.0.2
+    image: felsam99/sparingconnect_gestiomessage:1.0.0
     container_name: gestionmessage-service-3
     environment:
       - SPRING_PROFILES_ACTIVE=docker
