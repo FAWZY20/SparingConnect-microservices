@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   eureka:
-    image: felsam99/eurekaserveur:1.0.0
+    image: felsam99/eurekaserveur:1.0.1
     container_name: eureka
     ports:
       - "8761:8761"
