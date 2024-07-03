@@ -27,5 +27,6 @@ SparingConnect-microservices est un projet basé sur une architecture microservi
    # Démarrez les services
    docker-compose up --build
 
-Licence
+## Licence
+
 Licence MIT - voir le fichier LICENSE.
