@@ -16,9 +16,5 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
     Utilisateur findUtilisateurByMail(String mail);
 
     Utilisateur findUtilisateurByMailAndPassword(String mail, String password);
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM utilisateur USING profil WHERE utilisateur.id = profil.userid AND utilisateur.id = :userId", nativeQuery = true)
-    void deleteUserAndProfilById(@Param("userId") long userId);
 
 }

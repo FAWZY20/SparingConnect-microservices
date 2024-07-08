@@ -60,9 +60,8 @@ public class UtilisateurControler {
         utilisateurRepository.save(userUpdate);
     }
 
-    @Transactional
     @DeleteMapping("/deleteUser/{id}")
     public void deleteUser(@PathVariable("id") long id){
-        utilisateurRepository.deleteUserAndProfilById(id);
+        utilisateurRepository.deleteById(id);
     }
 }
