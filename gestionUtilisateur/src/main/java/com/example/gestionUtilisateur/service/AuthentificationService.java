@@ -5,11 +5,14 @@ import com.example.gestionUtilisateur.repository.UtilisateurRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthentificationService {
@@ -26,11 +29,16 @@ public class AuthentificationService {
         SECRET_KEY = Base64.getEncoder().encodeToString(secretKeyBytes);
     }
 
-    public String checkConnexion(Utilisateur utilisateur){
+    public ResponseEntity<?> checkConnexion(Utilisateur utilisateur){
         utilisateur = utilisateurRepository.findUtilisateurByMailAndPassword(utilisateur.getMail(), utilisateur.getPassword());
-        if (utilisateur != null){
-            return generateToken(utilisateur.getMail());
-        }else {
+        try{
+            String token = generateToken(utilisateur.getMail());
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", token);
+
+            return ResponseEntity.ok(response);
+        }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -42,5 +50,5 @@ public class AuthentificationService {
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
-
 }
+

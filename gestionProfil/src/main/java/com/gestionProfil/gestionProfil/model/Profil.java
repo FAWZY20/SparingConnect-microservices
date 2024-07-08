@@ -11,7 +11,7 @@ public class Profil {
     @SequenceGenerator(name = "SEQ", sequenceName = "vehicle_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "userid")
+    @Column(name = "userid", unique = true)
     private Long userId;
 
     @Column(name = "sport")

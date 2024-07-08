@@ -3,8 +3,9 @@ package com.example.gestionUtilisateur.controler;
 import com.example.gestionUtilisateur.model.Utilisateur;
 import com.example.gestionUtilisateur.repository.UtilisateurRepository;
 import com.example.gestionUtilisateur.service.AuthentificationService;
-import jdk.jshell.execution.Util;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,13 +21,23 @@ public class UtilisateurControler {
     AuthentificationService authentificationService;
 
     @PostMapping("/login")
-    public String login(@RequestBody Utilisateur utilisateur){
+    public ResponseEntity<?> login(@RequestBody Utilisateur utilisateur) {
         return authentificationService.checkConnexion(utilisateur);
     }
 
     @GetMapping("/getAllUser")
     public List<Utilisateur> getAllUser(){
         return utilisateurRepository.findAll();
+    }
+
+    @GetMapping("/getUser/{id}")
+    public Utilisateur getUser(@PathVariable("id") long id){
+        return utilisateurRepository.findUtilisateurById(id);
+    }
+
+    @GetMapping("/usersByMail/{mail}")
+    public Utilisateur getUserByMal(@PathVariable("mail") String mail){
+        return utilisateurRepository.findUtilisateurByMail(mail);
     }
 
     @PostMapping("/addUser")
@@ -49,8 +60,9 @@ public class UtilisateurControler {
         utilisateurRepository.save(userUpdate);
     }
 
+    @Transactional
     @DeleteMapping("/deleteUser/{id}")
     public void deleteUser(@PathVariable("id") long id){
-        utilisateurRepository.deleteById(id);
+        utilisateurRepository.deleteUserAndProfilById(id);
     }
 }
