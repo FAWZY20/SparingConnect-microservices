@@ -3,6 +3,7 @@ package com.example.gestionUtilisateur.controler;
 import com.example.gestionUtilisateur.model.Utilisateur;
 import com.example.gestionUtilisateur.repository.UtilisateurRepository;
 import com.example.gestionUtilisateur.service.AuthentificationService;
+import com.example.gestionUtilisateur.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,12 @@ public class UtilisateurControler {
     @Autowired
     UtilisateurRepository utilisateurRepository;
 
-
     @Autowired
     AuthentificationService authentificationService;
+
+
+    @Autowired
+    UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Utilisateur utilisateur) {
@@ -47,17 +51,13 @@ public class UtilisateurControler {
 
     @PutMapping("/updateUser/{id}")
     public void updateUser(@RequestBody Utilisateur utilisateur, @PathVariable("id") long id ){
-        Utilisateur userUpdate = utilisateurRepository.findUtilisateurById(id);
+       userService.updateUser(utilisateur, id);
+    }
 
-        userUpdate.setNom(utilisateur.getNom());
-        userUpdate.setPrenom(utilisateur.getPrenom());
-        userUpdate.setAge(utilisateur.getAge());
-        userUpdate.setVille(utilisateur.getVille());
-        userUpdate.setMail(utilisateur.getMail());
-        userUpdate.setPassword(utilisateur.getPassword());
-        userUpdate.setDescription(utilisateur.getDescription());
 
-        utilisateurRepository.save(userUpdate);
+    @PutMapping("/updatePwd/{id}")
+    public void updatePws(@RequestBody Utilisateur utilisateur, @PathVariable("id") long id ){
+        userService.updatePwd(utilisateur, id);
     }
 
     @DeleteMapping("/deleteUser/{id}")
