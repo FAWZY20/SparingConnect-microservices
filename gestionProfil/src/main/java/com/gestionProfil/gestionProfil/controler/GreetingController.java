@@ -6,4 +6,5 @@ public interface GreetingController {
 
     @GetMapping("/greeting")
     String greeting();
+
 }

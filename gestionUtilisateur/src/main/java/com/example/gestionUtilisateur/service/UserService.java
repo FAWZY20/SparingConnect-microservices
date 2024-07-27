@@ -4,6 +4,9 @@ import com.example.gestionUtilisateur.model.Utilisateur;
 import com.example.gestionUtilisateur.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class UserService {
@@ -23,7 +26,6 @@ public class UserService {
 
         utilisateurRepository.save(userUpdate);
     }
-
 
     public void  updatePwd(Utilisateur utilisateur, Long id){
         Utilisateur pwdUpdate = utilisateurRepository.findUtilisateurById(id);

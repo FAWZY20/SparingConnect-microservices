@@ -37,7 +37,7 @@ public class ProfilControler {
         Profil profilUpdate = profilRepository.getProfilByUserId(id);
 
         profilUpdate.setSport(profil.getSport());
-        profilUpdate.setNiveau(profil.getSport());
+        profilUpdate.setNiveau(profil.getNiveau());
         profilUpdate.setPoid(profil.getPoid());
 
         profilRepository.save(profilUpdate);

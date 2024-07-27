@@ -100,4 +100,36 @@
                          startValue="1"/>
     </changeSet>
 
+    <changeSet id="5" author="postgres">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="images"/>
+            </not>
+        </preConditions>
+        <createTable tableName="images">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profil" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="images"/>
+        </rollback>
+    </changeSet>
+
+
 </databaseChangeLog>
