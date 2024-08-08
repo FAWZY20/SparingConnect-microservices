@@ -1,6 +1,7 @@
 package com.example.gestionUtilisateur.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 @Entity
 @Table(name = "Images")
@@ -23,17 +24,16 @@ public class Images {
     @Column(name = "profil")
     public boolean profilImg;
 
-    @Column(name = "image", columnDefinition="bytea")
-    public byte[] images;
+    @Column(name = "image", length = 1000, columnDefinition="bytea")
+    public byte[] imageData;
 
-    public Images(Long userId, String name, String type, boolean profilImg, byte[] images) {
+    public Images(Long userId, String name, String type, boolean profilImg, byte[] imageData) {
         this.userId = userId;
         this.name = name;
         this.type = type;
         this.profilImg = profilImg;
-        this.images = images;
+        this.imageData = imageData;
     }
-
 
     public Images(){
 
@@ -72,11 +72,11 @@ public class Images {
     }
 
     public byte[] getImages() {
-        return images;
+        return imageData;
     }
 
-    public void setImages(byte[] images) {
-        this.images = images;
+    public void setImages(byte[] imageData) {
+        this.imageData = imageData;
     }
 
 }

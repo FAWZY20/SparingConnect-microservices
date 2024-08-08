@@ -116,7 +116,7 @@
             <column name="name" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="profil" type="text">
+            <column name="profil" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="type" type="text">
