@@ -1,22 +1,20 @@
 package com.gestioMessage.gestioMessage.controler;
 
-import com.gestioMessage.gestioMessage.model.Message;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+public interface MessageControler {
 
-@RestController
-public class MessageControler {
 
-    @MessageMapping("/chat")
-    @SendTo("/message/{id}")
-    public Message send(@RequestBody Message message) {
-        String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new Message(message.getRecipient_id(), message.getContent(), time);
-    }
+    @MessageMapping("/chat.sendMessage")
+    @SendTo("/topic/public")
+    public void sendMessage(@RequestBody com.gestioMessage.gestioMessage.model.Message message);
+
+    @MessageMapping("/chat.addUser")
+    @SendTo("/topic/public")
+    public Message addUser(com.gestioMessage.gestioMessage.model.Message message, SimpMessageHeaderAccessor headerAccessor);
 
 }

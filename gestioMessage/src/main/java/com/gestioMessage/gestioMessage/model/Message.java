@@ -12,6 +12,8 @@ public class Message {
     @SequenceGenerator(name = "SEQ", sequenceName = "vehicle_seq", allocationSize = 1)
     private Long id;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQ")
+    @SequenceGenerator(name = "SEQ", sequenceName = "vehicle_seq", allocationSize = 1)
     @Column(name = "conversation_id")
     private Long conversation_id;
 

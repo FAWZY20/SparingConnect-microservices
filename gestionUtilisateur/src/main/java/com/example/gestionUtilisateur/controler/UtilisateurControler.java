@@ -45,8 +45,9 @@ public class UtilisateurControler {
     }
 
     @PostMapping("/addUser")
-    public void addUser(@RequestBody Utilisateur utilisateur){
+    public Utilisateur addUser(@RequestBody Utilisateur utilisateur){
         utilisateurRepository.save(utilisateur);
+        return utilisateur;
     }
 
     @PutMapping("/updateUser/{id}")
